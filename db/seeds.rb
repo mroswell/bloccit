@@ -43,7 +43,7 @@ topics = Topic.all
 50.times do
   Post.create(
     user: users.sample,
-    topic_id:  topics.sample,
+    topic:  topics.sample,
     title:  Faker::Lorem.sentence,
     body:   Faker::Lorem.paragraph
   )
