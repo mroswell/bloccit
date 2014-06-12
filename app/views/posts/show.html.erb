@@ -4,8 +4,8 @@
 
 <div class="row">
   <div class="col-md-8">
-    <p><%= @post.body %></p>
-  </div>
+ <p><%= markdown @post.body %></p>
+</div>
   <div class="col-md-4">
     <% if policy(@post).edit? %>
       <%= link_to "Edit", edit_topic_post_path(@topic,@post), class: 'btn btn-success' %>

@@ -10,6 +10,7 @@
 
 require 'faker'
 
+User.destroy_all
 # Create Users
 5.times do
   user = User.new(
@@ -31,6 +32,7 @@ users = User.all
 # The `save` method then saves this User to the database.
 
 # Create Topics
+Topic.destroy_all
 15.times do
   Topic.create(
     name:         Faker::Lorem.sentence,
@@ -40,6 +42,7 @@ end
 topics = Topic.all
 
 # Create Posts
+Post.destroy_all
 50.times do
   Post.create(
     user: users.sample,
@@ -50,6 +53,7 @@ topics = Topic.all
 end
 posts = Post.all
 
+Comment.destroy_all
 # Create Comments
 100.times do
   Comment.create(
