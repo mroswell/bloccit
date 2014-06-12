@@ -35,13 +35,23 @@ end
 
 
   def update
-    @topic = Topic.find(params[:id])
+    # @topic = Topic.find(params[:id])
+    @topic = Topic.new(topic_params)
+
     authorize @topic
-    if @topic.update_attributes(params.require(:topic).permit(:name, :description, :public))
+    # if @topic.update_attributes(params.require(:topic).permit(:name, :description, :public))
+    if @topic.update_attributes(topic_params)
+
       redirect_to @topic
     else
       flash[:error] = "Error saving topic. Please try again"
       render :edit
     end
+  end
+
+  private
+
+  def topic_params
+    params.require(:topic).permit(:name, :description, :public)
   end
 end
