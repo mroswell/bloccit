@@ -13,6 +13,18 @@
  <%= image_tag(@post.image.url) if @post.image? %>
  <%= markdown @post.body %>
  </p>
+
+      <hr/>
+
+      <h2><%= @comments.count %> Comments</h2>
+
+      <%= render @comments %>
+
+ <%# if policy(@comment).create? %>
+         <hr/>
+        <h4>New Comment</h4>
+        <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
+      <%# end %>
 </div>
   <div class="col-md-4">
     <% if policy(@post).edit? %>
