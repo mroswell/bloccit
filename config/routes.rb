@@ -4,11 +4,13 @@ Bloccit::Application.routes.draw do
   resources :users, only: [:show, :index, :update]
 
   resources :topics do
-    resources :posts, except: [:index], controller: 'topics/posts' do
-      resources :comments, only: [:create]
+    # resources :posts, except: [:index], controller: 'topics/posts' do
+    resources :posts, except: [:index] do
+         resources :comments, only: [:create]
     #, except: [:index]
     end
   end
   get 'about' => 'welcome#about'
   root to: 'welcome#index'
 end
+
