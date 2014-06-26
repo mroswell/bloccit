@@ -44,13 +44,17 @@ topics = Topic.all
 # Create Posts
 Post.destroy_all
 50.times do
-  Post.create(
+  post = Post.create(
     user: users.sample,
     topic:  topics.sample,
     title:  Faker::Lorem.sentence,
     body:   Faker::Lorem.paragraph
   )
+  # set the created_at to a time within the past year
+  post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+  post.update_rank
 end
+
 posts = Post.all
 
 Comment.destroy_all
@@ -104,6 +108,7 @@ member = User.new(
 )
 member.skip_confirmation!
 member.save
+
 
 puts "Seed finished"
 puts "#{User.count} users created"
